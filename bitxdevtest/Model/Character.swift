@@ -15,7 +15,7 @@ class ResponseBody: Codable {
     var results:    [Character]?
 }
 
-class Character :   Codable {
+class Character:    Codable {
     var name:       String?
     var height:     String?
     var mass:       String?

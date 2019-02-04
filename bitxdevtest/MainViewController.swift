@@ -18,13 +18,16 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        btnSearch.isEnabled = true
+       btnSearch.isEnabled = true
     }
     
     func isSearching() {
@@ -35,51 +38,32 @@ class MainViewController: UIViewController {
         }
     }
     
-    
     @IBAction func SearchCharacter(_ sender: UIButton) {
         guard let searchText = tfCharacterName.text?.replacingOccurrences(of: " ", with: "+") else { return }
-        let searchString = "https://swapi.co/api/people/?search=" + searchText
-        let searchUrl = URL(string: searchString)
-        let session = URLSession.shared
+        Service.urlString = "https://swapi.co/api/people/?search=" + searchText
         
         activityIndicator.startAnimating()
         isSearching()
         
-        let dataTask = session.dataTask(with: searchUrl!) { (data, response, error) in
-            if error == nil {
-                guard let response = response as? HTTPURLResponse else { return }
-                    if response.statusCode == 200 {
-                        guard let data = data else { return }
-                        do {
-                        let responseBody = try JSONDecoder().decode(ResponseBody.self, from: data)
-                            if (responseBody.results?.isEmpty)! {
-                                // exibir mensagem de nenhum usuário encontrado
-                                print("Nenhum resultado encontrado")
-                                
-                                DispatchQueue.main.async {
-                                    self.activityIndicator.stopAnimating()
-                                    self.isSearching()
-                                }
-                            } else if let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
-                                detailViewController.character = responseBody.results?.first
-
-                                DispatchQueue.main.async {
-                                self.activityIndicator.stopAnimating()
-                                
-                                
-                                self.navigationController?.pushViewController(detailViewController, animated: true)
-                                    }
-                                }
-                            
-                        print(responseBody)
-                        } catch {
-                            
-                    }
+        Service.getCharacter { (responseBody) in
+            if (responseBody.results?.isEmpty)! {
+                // exibir mensagem de nenhum usuário encontrado
+                print("Nenhum resultado encontrado")
+                
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.isSearching()
+                }
+            } else if let characterViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CharacterViewController") as? CharacterViewController {
+                characterViewController.character = responseBody.results?.first
+                
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.navigationController?.pushViewController(characterViewController, animated: true)
                 }
             }
+            print(responseBody.results)
         }
-        dataTask.resume()
-        
     }
     
 
