@@ -10,7 +10,7 @@ import Foundation
 
 class Film : Codable {
     var title:          String?
-    var episode_id:     String?
+    var episode_id:     Int?
     var opening_crawl:  String?
     var director:       String?
     var producer:       String?
@@ -23,5 +23,4 @@ class Film : Codable {
     var created:        String?
     var edited:         String?
     var url:            String?
-    
 }

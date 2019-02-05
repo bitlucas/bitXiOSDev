@@ -62,7 +62,7 @@ class MainViewController: UIViewController {
                     self.navigationController?.pushViewController(characterViewController, animated: true)
                 }
             }
-            print(responseBody.results)
+            //print(responseBody.results)
         }
     }
     

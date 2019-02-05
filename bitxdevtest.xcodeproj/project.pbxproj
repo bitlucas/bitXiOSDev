@@ -18,6 +18,10 @@
 		1CDDD24622078BAF009F6BF9 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDDD24522078BAF009F6BF9 /* Planet.swift */; };
 		1CDDD2492207A73C009F6BF9 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDDD2482207A73C009F6BF9 /* Film.swift */; };
 		1CDDD24B2207AB1A009F6BF9 /* PlanetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDDD24A2207AB1A009F6BF9 /* PlanetViewController.swift */; };
+		1CDDD24D2209108B009F6BF9 /* Specie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDDD24C2209108B009F6BF9 /* Specie.swift */; };
+		1CDDD24F22091306009F6BF9 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDDD24E22091306009F6BF9 /* Vehicle.swift */; };
+		1CDDD251220915FB009F6BF9 /* Starship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDDD250220915FB009F6BF9 /* Starship.swift */; };
+		1CDDD25422094556009F6BF9 /* SpecieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDDD25322094556009F6BF9 /* SpecieViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		1CDDD24522078BAF009F6BF9 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		1CDDD2482207A73C009F6BF9 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		1CDDD24A2207AB1A009F6BF9 /* PlanetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetViewController.swift; sourceTree = "<group>"; };
+		1CDDD24C2209108B009F6BF9 /* Specie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Specie.swift; sourceTree = "<group>"; };
+		1CDDD24E22091306009F6BF9 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		1CDDD250220915FB009F6BF9 /* Starship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starship.swift; sourceTree = "<group>"; };
+		1CDDD25322094556009F6BF9 /* SpecieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecieViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,10 +76,8 @@
 			children = (
 				1C910F6C22060D74002E771E /* AppDelegate.swift */,
 				1C910F7022060D74002E771E /* Main.storyboard */,
-				1C910F7E22060E15002E771E /* MainViewController.swift */,
-				1CDDD24A2207AB1A009F6BF9 /* PlanetViewController.swift */,
 				1C910F7322060D75002E771E /* Assets.xcassets */,
-				1C910F82220611D1002E771E /* CharacterViewController.swift */,
+				1CDDD25222092715009F6BF9 /* Controllers */,
 				1C910F7522060D75002E771E /* LaunchScreen.storyboard */,
 				1CDDD24722078D17009F6BF9 /* Model */,
 				1C910F7822060D75002E771E /* Info.plist */,
@@ -86,8 +92,22 @@
 				1C910F8022061052002E771E /* Character.swift */,
 				1CDDD24522078BAF009F6BF9 /* Planet.swift */,
 				1CDDD2482207A73C009F6BF9 /* Film.swift */,
+				1CDDD24C2209108B009F6BF9 /* Specie.swift */,
+				1CDDD24E22091306009F6BF9 /* Vehicle.swift */,
+				1CDDD250220915FB009F6BF9 /* Starship.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1CDDD25222092715009F6BF9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1C910F7E22060E15002E771E /* MainViewController.swift */,
+				1CDDD24A2207AB1A009F6BF9 /* PlanetViewController.swift */,
+				1CDDD25322094556009F6BF9 /* SpecieViewController.swift */,
+				1C910F82220611D1002E771E /* CharacterViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,12 +182,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CDDD24B2207AB1A009F6BF9 /* PlanetViewController.swift in Sources */,
+				1CDDD251220915FB009F6BF9 /* Starship.swift in Sources */,
 				1C910F6D22060D74002E771E /* AppDelegate.swift in Sources */,
 				1C910F8122061052002E771E /* Character.swift in Sources */,
 				1CDDD24422077F8B009F6BF9 /* Service.swift in Sources */,
+				1CDDD25422094556009F6BF9 /* SpecieViewController.swift in Sources */,
 				1C910F7F22060E15002E771E /* MainViewController.swift in Sources */,
 				1C910F83220611D1002E771E /* CharacterViewController.swift in Sources */,
 				1CDDD24622078BAF009F6BF9 /* Planet.swift in Sources */,
+				1CDDD24D2209108B009F6BF9 /* Specie.swift in Sources */,
+				1CDDD24F22091306009F6BF9 /* Vehicle.swift in Sources */,
 				1CDDD2492207A73C009F6BF9 /* Film.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
