@@ -10,7 +10,6 @@ import UIKit
 
 class CharacterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbMass: UILabel!
     @IBOutlet weak var lbHeight: UILabel!
     @IBOutlet weak var lbBirthYear: UILabel!
@@ -18,28 +17,29 @@ class CharacterViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var lbGender: UILabel!
     @IBOutlet weak var btnSpecie: UIButton!
     
-    var sectionName = ["Films", "Specie", "Vehicles", "Starships"]
+    var sectionName = ["Films", "Vehicles", "Starships"]
     
-//    var activityIndicator : UIActivityIndicatorView = {
-//        var ai = UIActivityIndicatorView()
-//        ai.style = .gray
-//        ai.hidesWhenStopped = true
-//        ai.translatesAutoresizingMaskIntoConstraints = false
-//        return ai
-//    }()
-//
-
     var character : Character?
     var planet: Planet?
-    var film : Film?
+    var filmArray : [Film] = []
     var specie : Specie?
     var vehicle : Vehicle?
     var starship : Starship?
     
+    var filmDictionary = [String : Film]()
+    var vehicleDictionary = [String : Vehicle]()
+    var starshipDictionary = [String : Starship]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        let imgBackground = UIImage(named: "navBarBackground")
+        self.navigationController?.navigationBar.backgroundColor = UIColor(patternImage: imgBackground!)
+        self.navigationController?.navigationBar.tintColor = UIColor.yellow
         
-        lbName.text = character?.name
+        title = character?.name
+        //lbName.text = character?.name
         lbMass.text = character?.mass
         lbHeight.text = character?.height
         lbBirthYear.text = character?.birth_year
@@ -51,7 +51,7 @@ class CharacterViewController: UIViewController, UITableViewDelegate, UITableVie
         btnHomeworld.isEnabled = false
         btnHomeworld.setTitle("Loading...", for: .disabled)
         btnSpecie.isEnabled = false
-        btnSpecie.setTitle("", for: .disabled)
+        btnSpecie.setTitle("Loading...", for: .disabled)
 
     }
     
@@ -64,9 +64,6 @@ class CharacterViewController: UIViewController, UITableViewDelegate, UITableVie
             return (character?.films?.count)!
         }
         if section == 1 {
-            return character?.species?.count ?? 0
-        }
-        if section == 2 {
             return character?.vehicles?.count ?? 0
         }
         return character?.starships?.count ?? 0
@@ -79,43 +76,44 @@ class CharacterViewController: UIViewController, UITableViewDelegate, UITableVie
        
         //film
         if indexPath.section == 0 {
-            cell.textLabel?.text = ""
             Service.urlString = character?.films![indexPath.row]
-            Service.getFilm { (film) in
-                self.film = film
-                DispatchQueue.main.async {
-                    cell.textLabel?.text = "Episode \(self.film!.episode_id!): \(self.film!.title!)"
+            if let filmCache = filmDictionary[(character?.films![indexPath.row])!]{
+                cell.textLabel?.text = "Episode \(filmCache.episode_id!): \(filmCache.title!)"
+            } else {
+                Service.getFilm { (film) in
+                    self.filmDictionary[(self.character?.films![indexPath.row])!] = film
+                    DispatchQueue.main.async {
+                        cell.textLabel?.text = "Episode \(film.episode_id!): \(film.title!)"
+                    }
                 }
             }
         }
-        
-        //specie
-        if indexPath.section == 1 {
-            cell.textLabel?.text = ""
-            Service.urlString = character?.species![indexPath.row]
-            Service.getSpecie { (specie) in
-                DispatchQueue.main.async {
-                    cell.textLabel?.text = specie.name
-                }
-            }
-        }
+
         //vehicle
-        if indexPath.section == 2 {
-            cell.textLabel?.text = ""
+        if indexPath.section == 1 {
             Service.urlString = character?.vehicles![indexPath.row]
-            Service.getVehicle { (vehicle) in
-                DispatchQueue.main.async {
-                    cell.textLabel?.text = vehicle.name
+            if let vehicleCache = vehicleDictionary[(character?.vehicles![indexPath.row])!]{
+                cell.textLabel?.text = vehicleCache.name
+            } else {
+                Service.getVehicle { (vehicle) in
+                    self.vehicleDictionary[(self.character?.vehicles![indexPath.row])!] = vehicle
+                    DispatchQueue.main.async {
+                        cell.textLabel?.text = vehicle.name
+                    }
                 }
             }
         }
         //starship
-        if indexPath.section == 3 {
-            cell.textLabel?.text = ""
+        if indexPath.section == 2 {
             Service.urlString = character?.starships![indexPath.row]
-            Service.getStarship { (starship) in
-                DispatchQueue.main.async {
-                    cell.textLabel?.text = starship.name
+            if let starshipCache = starshipDictionary[(character?.starships![indexPath.row])!] {
+                cell.textLabel?.text = starshipCache.name
+            } else {
+                Service.getStarship { (starship) in
+                    self.starshipDictionary[(self.character?.starships![indexPath.row])!] = starship
+                    DispatchQueue.main.async {
+                        cell.textLabel?.text = starship.name
+                    }
                 }
             }
         }
@@ -123,17 +121,33 @@ class CharacterViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if indexPath.section == 0 {
-            print(character?.films![indexPath.row])
+            if let filmViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FilmViewController") as? FilmViewController {
+                filmViewController.film = filmDictionary[(character?.films![indexPath.row])!]
+                
+                DispatchQueue.main.async {
+                    self.present(filmViewController, animated: true, completion: nil)
+                }
+            }
         }
         if indexPath.section == 1 {
-            print(character?.species![indexPath.row])
+            if let vehicleViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "VehicleViewController") as? VehicleViewController{
+                vehicleViewController.vehicle = vehicleDictionary[(character?.vehicles![indexPath.row])!]
+                 
+                DispatchQueue.main.async {
+                    self.present(vehicleViewController, animated: true, completion: nil)
+                }
+            }
         }
         if indexPath.section == 2 {
-            print(character?.vehicles![indexPath.row])
-        }
-        if indexPath.section == 3 {
-            print(character?.starships![indexPath.row])
+            if let starshipViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "StarshipViewController") as? StarshipViewController{
+                starshipViewController.starship = starshipDictionary[(character?.starships![indexPath.row])!]
+                
+                DispatchQueue.main.async {
+                    self.present(starshipViewController, animated: true, completion: nil)
+                }
+            }
         }
     }
     
