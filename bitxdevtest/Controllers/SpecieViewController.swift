@@ -22,7 +22,10 @@ class SpecieViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupView()
+    }
+    
+    private func setupView() {
         lbSpecieName.text = specie?.name
         lbLanguage.text = specie?.language
         lbLifespan.text = specie?.average_lifespan
@@ -30,7 +33,6 @@ class SpecieViewController: UIViewController {
         lbSkinColor.text = specie?.skin_colors
         lbHeight.text = specie?.average_height
         lbClassification.text = specie?.classification
-        
     }
 
     @IBAction func Close(_ sender: UIButton) {

@@ -21,10 +21,7 @@ class CharacterViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var character : Character?
     var planet: Planet?
-    var filmArray : [Film] = []
     var specie : Specie?
-    var vehicle : Vehicle?
-    var starship : Starship?
     
     var filmDictionary = [String : Film]()
     var vehicleDictionary = [String : Vehicle]()
@@ -38,6 +35,16 @@ class CharacterViewController: UIViewController, UITableViewDelegate, UITableVie
         self.navigationController?.navigationBar.backgroundColor = UIColor(patternImage: imgBackground!)
         self.navigationController?.navigationBar.tintColor = UIColor.yellow
         
+        setupView()
+        
+        btnHomeworld.isEnabled = false
+        btnHomeworld.setTitle("Loading...", for: .disabled)
+        btnSpecie.isEnabled = false
+        btnSpecie.setTitle("Loading...", for: .disabled)
+
+    }
+    
+    private func setupView() {
         title = character?.name
         //lbName.text = character?.name
         lbMass.text = character?.mass
@@ -47,12 +54,6 @@ class CharacterViewController: UIViewController, UITableViewDelegate, UITableVie
         
         getPlanet()
         getSpecie()
-        
-        btnHomeworld.isEnabled = false
-        btnHomeworld.setTitle("Loading...", for: .disabled)
-        btnSpecie.isEnabled = false
-        btnSpecie.setTitle("Loading...", for: .disabled)
-
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -156,17 +157,6 @@ class CharacterViewController: UIViewController, UITableViewDelegate, UITableVie
         return sectionName[section]
     }
     
-    
-//    func getFilmTitle(searchUrl: String) {
-//        Service.urlString = searchUrl
-//            Service.getFilm { (film) in
-//                self.filmArray.append(film.title!)
-//                print(self.filmArray)
-//        }
-//    }
-   
-    
-    
    // downloading planet data
    private func getPlanet() {
         Service.urlString = character?.homeworld
@@ -208,7 +198,5 @@ class CharacterViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.present(specieViewController, animated: true, completion: nil)
             }
         }
-    }
-    
-    
+    } 
 }

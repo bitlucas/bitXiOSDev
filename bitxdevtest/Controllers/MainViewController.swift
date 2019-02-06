@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var tfCharacterName: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -92,7 +92,16 @@ class MainViewController: UIViewController {
         }
     }
     
+    @IBAction func returnButtonPressed(_ sender: Any) {
+        performSearch()
+    }
+    
+    
     @IBAction func SearchCharacter(_ sender: UIButton) {
+        performSearch()
+    }
+    
+    func performSearch() {
         guard let searchText = tfCharacterName.text?.replacingOccurrences(of: " ", with: "+") else { return }
         Service.urlString = "https://swapi.co/api/people/?search=" + searchText
         
@@ -116,7 +125,6 @@ class MainViewController: UIViewController {
                     self.navigationController?.pushViewController(characterViewController, animated: true)
                 }
             }
-            //print(responseBody.results)
         }
     }
     
