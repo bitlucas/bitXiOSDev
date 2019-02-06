@@ -14,8 +14,9 @@
 		1C910F7F22060E15002E771E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C910F7E22060E15002E771E /* MainViewController.swift */; };
 		1C910F8122061052002E771E /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C910F8022061052002E771E /* Character.swift */; };
 		1C910F83220611D1002E771E /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C910F82220611D1002E771E /* CharacterViewController.swift */; };
+		1CA43531220A6F7C0063A192 /* View+Subclasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA43530220A6F7C0063A192 /* View+Subclasses.swift */; };
 		1CD5EA172209C2790061B8E8 /* FilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD5EA162209C2790061B8E8 /* FilmViewController.swift */; };
-		1CD5EA192209FE8D0061B8E8 /* TextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD5EA182209FE8D0061B8E8 /* TextField+Extensions.swift */; };
+		1CD5EA192209FE8D0061B8E8 /* TextField+Subclasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD5EA182209FE8D0061B8E8 /* TextField+Subclasses.swift */; };
 		1CD5EA1C220A31160061B8E8 /* VehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD5EA1B220A31160061B8E8 /* VehicleViewController.swift */; };
 		1CD5EA1E220A41F70061B8E8 /* StarshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD5EA1D220A41F70061B8E8 /* StarshipViewController.swift */; };
 		1CDDD24422077F8B009F6BF9 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDDD24322077F8B009F6BF9 /* Service.swift */; };
@@ -38,8 +39,9 @@
 		1C910F7E22060E15002E771E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1C910F8022061052002E771E /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		1C910F82220611D1002E771E /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
+		1CA43530220A6F7C0063A192 /* View+Subclasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Subclasses.swift"; sourceTree = "<group>"; };
 		1CD5EA162209C2790061B8E8 /* FilmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmViewController.swift; sourceTree = "<group>"; };
-		1CD5EA182209FE8D0061B8E8 /* TextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extensions.swift"; sourceTree = "<group>"; };
+		1CD5EA182209FE8D0061B8E8 /* TextField+Subclasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Subclasses.swift"; sourceTree = "<group>"; };
 		1CD5EA1B220A31160061B8E8 /* VehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleViewController.swift; sourceTree = "<group>"; };
 		1CD5EA1D220A41F70061B8E8 /* StarshipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipViewController.swift; sourceTree = "<group>"; };
 		1CDDD24322077F8B009F6BF9 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -90,7 +92,6 @@
 				1CD5EA1A2209FE980061B8E8 /* Utils */,
 				1CDDD24722078D17009F6BF9 /* Model */,
 				1C910F7822060D75002E771E /* Info.plist */,
-				1CDDD24322077F8B009F6BF9 /* Service.swift */,
 			);
 			path = bitxdevtest;
 			sourceTree = "<group>";
@@ -98,7 +99,9 @@
 		1CD5EA1A2209FE980061B8E8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				1CD5EA182209FE8D0061B8E8 /* TextField+Extensions.swift */,
+				1CD5EA182209FE8D0061B8E8 /* TextField+Subclasses.swift */,
+				1CA43530220A6F7C0063A192 /* View+Subclasses.swift */,
+				1CDDD24322077F8B009F6BF9 /* Service.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				1CD5EA1E220A41F70061B8E8 /* StarshipViewController.swift in Sources */,
 				1C910F8122061052002E771E /* Character.swift in Sources */,
 				1CD5EA172209C2790061B8E8 /* FilmViewController.swift in Sources */,
+				1CA43531220A6F7C0063A192 /* View+Subclasses.swift in Sources */,
 				1CDDD24422077F8B009F6BF9 /* Service.swift in Sources */,
 				1CDDD25422094556009F6BF9 /* SpecieViewController.swift in Sources */,
 				1C910F7F22060E15002E771E /* MainViewController.swift in Sources */,
@@ -216,7 +220,7 @@
 				1CDDD24D2209108B009F6BF9 /* Specie.swift in Sources */,
 				1CDDD24F22091306009F6BF9 /* Vehicle.swift in Sources */,
 				1CDDD2492207A73C009F6BF9 /* Film.swift in Sources */,
-				1CD5EA192209FE8D0061B8E8 /* TextField+Extensions.swift in Sources */,
+				1CD5EA192209FE8D0061B8E8 /* TextField+Subclasses.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

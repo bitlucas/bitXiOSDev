@@ -23,6 +23,10 @@ class PlanetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupView()
+    }
+    
+    private func setupView() {
         lbPlanetName.text = planet?.name
         lbClimate.text = planet?.climate
         lbGravity.text = planet?.gravity

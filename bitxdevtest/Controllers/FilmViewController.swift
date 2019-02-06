@@ -24,11 +24,13 @@ class FilmViewController: UIViewController {
     }
     
     private func setupView() {
-        lbFilmTitle.text = "Episode \(film!.episode_id!): \(film!.title!)"
-        lbOpeningCrawl.text = film!.opening_crawl
-        lbDirector.text = film!.director
-        lbProducer.text = film!.producer
-        lbReleaseDate.text = film!.release_date
+        guard let episode = film!.episode_id else { return }
+        guard let title = film!.title else { return }
+        lbFilmTitle.text = "Episode \(episode): \(title)"
+        lbOpeningCrawl.text = film?.opening_crawl
+        lbDirector.text = film?.director
+        lbProducer.text = film?.producer
+        lbReleaseDate.text = film?.release_date
     }
     
     @IBAction func Close(_ sender: UIButton) {
